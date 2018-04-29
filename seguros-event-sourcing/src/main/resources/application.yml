@@ -1,0 +1,14 @@
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+  kafka:
+    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+    consumer:
+      group-id: foo
+      auto-offset-reset: earliest
+app:
+  topic:
+    apolice: apolice
+    dependente: dependente

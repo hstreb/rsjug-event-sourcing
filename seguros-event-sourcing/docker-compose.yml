@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  apolice:
+    build: ./apolice/
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/seguros
+    ports:
+      - "8080:8080"
+#    network_mode: host
+  fatura:
+    build: ./fatura/
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/seguros
+    ports:
+      - "8081:8081"
+#    network_mode: host
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=seguros
+      - MYSQL_USER=seguros
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+#    network_mode: host
