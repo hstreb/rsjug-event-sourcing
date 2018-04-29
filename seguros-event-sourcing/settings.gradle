@@ -1,2 +1,4 @@
 rootProject.name = 'seguros-event-sourcing'
+include 'apolice-service'
+include 'fatura-service'
 

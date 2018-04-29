@@ -1,27 +1,81 @@
-version: '3.3'
+version: '2'
 
 services:
-  apolice:
-    build: ./apolice/
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/seguros
+  zoo1:
+    image: zookeeper:3.4.9
+    hostname: zoo1
     ports:
-      - "8080:8080"
-#    network_mode: host
-  fatura:
-    build: ./fatura/
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/seguros
-    ports:
-      - "8081:8081"
-#    network_mode: host
-  mysql:
-    image: mysql
+      - "2181:2181"
     environment:
-      - MYSQL_ROOT_PASSWORD=123
-      - MYSQL_DATABASE=seguros
-      - MYSQL_USER=seguros
-      - MYSQL_PASSWORD=password
+        ZOO_MY_ID: 1
+        ZOO_PORT: 2181
+        ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+  zoo2:
+    image: zookeeper:3.4.9
+    hostname: zoo2
     ports:
-      - "3306:3306"
-#    network_mode: host
+      - "2182:2182"
+    environment:
+        ZOO_MY_ID: 2
+        ZOO_PORT: 2182
+        ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+  zoo3:
+    image: zookeeper:3.4.9
+    hostname: zoo3
+    ports:
+      - "2183:2183"
+    environment:
+        ZOO_MY_ID: 3
+        ZOO_PORT: 2183
+        ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+
+  kafka1:
+    image: confluentinc/cp-kafka:4.1.0
+    hostname: kafka1
+    ports:
+      - "9092:9092"
+    environment:
+      # add the entry "127.0.0.1    kafka1" to your /etc/hosts file
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka1:9092"
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2182,zoo3:2183"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+
+  kafka2:
+    image: confluentinc/cp-kafka:4.1.0
+    hostname: kafka2
+    ports:
+      - "9093:9093"
+    environment:
+      # add the entry "127.0.0.1    kafka2" to your /etc/hosts file
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka2:9093"
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2182,zoo3:2183"
+      KAFKA_BROKER_ID: 2
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+
+  kafka3:
+    image: confluentinc/cp-kafka:4.1.0
+    hostname: kafka3
+    ports:
+      - "9094:9094"
+    environment:
+      # add the entry "127.0.0.1    kafka3" to your /etc/hosts file
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka3:9094"
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2182,zoo3:2183"
+      KAFKA_BROKER_ID: 3
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
