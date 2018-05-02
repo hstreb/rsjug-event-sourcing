@@ -2,8 +2,6 @@ package org.exemplo.seguros.apolice;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/apolices")
 public class ApoliceApi {
@@ -16,11 +14,6 @@ public class ApoliceApi {
     @PostMapping
     public Apolice salvar(@RequestBody Apolice apolice) {
         return apoliceService.salvar(apolice);
-    }
-
-    @GetMapping
-    public List<Apolice> listar() {
-        return apoliceService.listar();
     }
 
     @GetMapping("/{id}")
