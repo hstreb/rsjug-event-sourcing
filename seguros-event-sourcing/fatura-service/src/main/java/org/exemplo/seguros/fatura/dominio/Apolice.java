@@ -1,6 +1,6 @@
-package org.exemplo.seguros.apolice.dominio;
+package org.exemplo.seguros.fatura.dominio;
 
-import org.exemplo.seguros.apolice.dominio.evento.DependenteAdicionado;
+import org.exemplo.seguros.fatura.dominio.evento.DependenteAdicionado;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

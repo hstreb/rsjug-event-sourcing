@@ -1,6 +1,6 @@
-package org.exemplo.seguros.apolice.dominio.evento;
+package org.exemplo.seguros.fatura.dominio.evento;
 
-import org.exemplo.seguros.apolice.dominio.Dependente;
+import org.exemplo.seguros.fatura.dominio.Dependente;
 
 import java.util.Collections;
 import java.util.List;

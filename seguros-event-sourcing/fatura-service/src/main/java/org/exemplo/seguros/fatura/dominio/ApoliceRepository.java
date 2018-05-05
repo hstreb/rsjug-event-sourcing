@@ -1,4 +1,4 @@
-package org.exemplo.seguros.apolice.dominio;
+package org.exemplo.seguros.fatura.dominio;
 
 import java.util.Optional;
 

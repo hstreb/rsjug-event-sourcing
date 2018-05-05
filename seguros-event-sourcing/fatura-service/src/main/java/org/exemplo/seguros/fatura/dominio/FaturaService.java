@@ -1,6 +1,5 @@
 package org.exemplo.seguros.fatura.dominio;
 
-import org.exemplo.seguros.apolice.dominio.ApoliceRepository;
 import org.exemplo.seguros.fatura.dominio.evento.FaturaCriada;
 import org.exemplo.seguros.fatura.infraestrutura.EventoStore;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package org.exemplo.seguros.apolice.dominio.evento;
+package org.exemplo.seguros.fatura.dominio.evento;
 
 public class DependenteAdicionado implements Evento {
 

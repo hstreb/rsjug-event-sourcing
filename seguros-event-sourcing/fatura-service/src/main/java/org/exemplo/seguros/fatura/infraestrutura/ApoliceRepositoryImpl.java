@@ -1,9 +1,9 @@
-package org.exemplo.seguros.apolice.infraestrutura;
+package org.exemplo.seguros.fatura.infraestrutura;
 
-import org.exemplo.seguros.apolice.dominio.Apolice;
-import org.exemplo.seguros.apolice.dominio.ApoliceRepository;
-import org.exemplo.seguros.apolice.dominio.evento.ApoliceCriada;
-import org.exemplo.seguros.apolice.dominio.evento.DependenteAdicionado;
+import org.exemplo.seguros.fatura.dominio.Apolice;
+import org.exemplo.seguros.fatura.dominio.ApoliceRepository;
+import org.exemplo.seguros.fatura.dominio.evento.ApoliceCriada;
+import org.exemplo.seguros.fatura.dominio.evento.DependenteAdicionado;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
